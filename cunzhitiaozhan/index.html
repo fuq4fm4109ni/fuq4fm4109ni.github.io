@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>寸止挑战-寸止挑战玩法_节奏控制训练与自控练习</title>
+<meta name="description" content="寸止挑战是一种通过节奏控制与自我克制的练习方式。本页介绍寸止挑战的基本规则、常用节奏方法、训练步骤与注意事项，并提供可用的计时与节拍入口，帮助初次接触寸止挑战的人找到清晰的练习路径。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2315181f'/%3E%3Ccircle cx='32' cy='32' r='18' fill='none' stroke='%23ffb648' stroke-width='4'/%3E%3Cline x1='32' y1='32' x2='32' y2='18' stroke='%23ffb648' stroke-width='4' stroke-linecap='round'/%3E%3Cline x1='32' y1='32' x2='42' y2='38' stroke='%237ad0c0' stroke-width='4' stroke-linecap='round'/%3E%3C/svg%3E">
+<style>
+  :root{
+    --bg:#15181f;
+    --bg-soft:#1c2029;
+    --card:#212632;
+    --line:#2f3644;
+    --text:#e8ebf1;
+    --muted:#9aa4b5;
+    --amber:#ffb648;
+    --mint:#7ad0c0;
+    --radius:16px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei",system-ui,-apple-system,sans-serif;
+    line-height:1.75;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{width:min(1120px,92vw);margin:0 auto;}
+
+  /* 页头 */
+  header.site{
+    position:sticky;top:0;z-index:50;
+    background:rgba(21,24,31,.88);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--line);
+  }
+  .head-inner{
+    display:flex;align-items:center;justify-content:space-between;
+    gap:16px;padding:14px 0;
+  }
+  .logo{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+  .logo .mark{
+    width:38px;height:38px;border-radius:11px;
+    background:var(--bg-soft);border:1px solid var(--line);
+    display:grid;place-items:center;
+  }
+  .logo .brand{
+    font-size:1.06rem;font-weight:700;letter-spacing:.03em;
+    white-space:nowrap;
+  }
+  .logo .brand span{color:var(--amber);}
+  nav.main ul{
+    list-style:none;display:flex;gap:6px;margin:0;padding:0;flex-wrap:wrap;
+  }
+  nav.main a{
+    display:block;padding:7px 12px;border-radius:9px;
+    font-size:.9rem;color:var(--muted);transition:.2s;
+  }
+  nav.main a:hover,nav.main a:focus-visible{color:var(--text);background:var(--bg-soft);}
+
+  /* 首屏 */
+  .hero{
+    position:relative;overflow:hidden;
+    border-bottom:1px solid var(--line);
+    background:
+      radial-gradient(900px 380px at 82% -12%,rgba(255,182,72,.14),transparent 62%),
+      radial-gradient(700px 340px at 6% 108%,rgba(122,208,192,.12),transparent 60%),
+      var(--bg);
+  }
+  .hero-inner{
+    display:grid;grid-template-columns:1.15fr .85fr;gap:44px;
+    align-items:center;padding:64px 0 60px;
+  }
+  .kicker{
+    display:inline-flex;align-items:center;gap:8px;
+    font-size:.78rem;letter-spacing:.14em;color:var(--amber);
+    border:1px solid rgba(255,182,72,.35);border-radius:999px;
+    padding:5px 13px;margin-bottom:20px;
+  }
+  .kicker::before{content:"";width:6px;height:6px;border-radius:50%;background:var(--amber);}
+  h1{
+    font-size:clamp(2rem,4.4vw,3.1rem);
+    line-height:1.2;margin:0 0 18px;letter-spacing:.02em;
+  }
+  h1 em{font-style:normal;color:var(--amber);}
+  .hero p.lead{
+    margin:0 0 26px;color:var(--muted);font-size:1.02rem;max-width:34em;
+  }
+  .cta-row{display:flex;gap:12px;flex-wrap:wrap;}
+  .btn{
+    display:inline-flex;align-items:center;gap:8px;
+    padding:11px 22px;border-radius:11px;font-size:.95rem;font-weight:600;
+    border:1px solid transparent;transition:.2s;cursor:pointer;
+  }
+  .btn.primary{background:var(--amber);color:#1a1408;}
+  .btn.primary:hover{filter:brightness(1.08);}
+  .btn.ghost{border-color:var(--line);color:var(--text);background:var(--bg-soft);}
+  .btn.ghost:hover{border-color:var(--mint);color:var(--mint);}
+  .btn[aria-disabled="true"]{opacity:.55;}
+
+  /* 首屏图形 */
+  .dial-card{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px 24px 22px;text-align:center;
+  }
+  .dial-card .cap{font-size:.78rem;color:var(--muted);letter-spacing:.12em;margin-top:14px;}
+  .dial-time{
+    font-variant-numeric:tabular-nums;
+    font-size:2.1rem;font-weight:700;letter-spacing:.06em;margin-top:4px;
+  }
+  .dial-time small{font-size:.9rem;color:var(--muted);font-weight:400;margin-left:4px;}
+
+  /* 通用区块 */
+  section.block{padding:56px 0;border-bottom:1px solid var(--line);}
+  .sec-head{margin-bottom:30px;max-width:44em;}
+  .sec-head .tag{
+    font-size:.76rem;letter-spacing:.16em;color:var(--mint);font-weight:600;
+  }
+  h2{
+    font-size:clamp(1.3rem,2.4vw,1.7rem);
+    margin:8px 0 10px;line-height:1.35;
+  }
+  .sec-head p{margin:0;color:var(--muted);font-size:.96rem;}
+
+  /* 规则卡片 */
+  .grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;}
+  .rule{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:24px 22px;
+  }
+  .rule .num{
+    font-size:.78rem;font-weight:700;color:var(--amber);letter-spacing:.1em;
+  }
+  .rule h3{font-size:1.05rem;margin:8px 0 8px;}
+  .rule p{margin:0;color:var(--muted);font-size:.92rem;}
+
+  /* 节奏列表 */
+  .rhythm-list{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;}
+  .rhythm{
+    display:flex;gap:16px;align-items:flex-start;
+    background:var(--bg-soft);border:1px solid var(--line);
+    border-radius:var(--radius);padding:20px;
+  }
+  .rhythm .ic{
+    flex-shrink:0;width:42px;height:42px;border-radius:11px;
+    background:rgba(122,208,192,.12);border:1px solid rgba(122,208,192,.3);
+    display:grid;place-items:center;
+  }
+  .rhythm h3{font-size:1rem;margin:0 0 6px;}
+  .rhythm p{margin:0;color:var(--muted);font-size:.9rem;}
+
+  /* 步骤 */
+  .steps{counter-reset:step;display:grid;gap:0;}
+  .step{
+    position:relative;padding:20px 0 20px 60px;border-bottom:1px dashed var(--line);
+  }
+  .step:last-child{border-bottom:none;}
+  .step::before{
+    counter-increment:step;content:counter(step);
+    position:absolute;left:0;top:20px;
+    width:36px;height:36px;border-radius:50%;
+    display:grid;place-items:center;
+    background:var(--card);border:1px solid var(--line);
+    color:var(--amber);font-weight:700;font-size:.95rem;
+  }
+  .step h3{margin:0 0 6px;font-size:1.02rem;}
+  .step p{margin:0;color:var(--muted);font-size:.93rem;max-width:52em;}
+
+  /* 计时器工具 */
+  .tool{
+    background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    padding:28px 26px;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;
+  }
+  .tool h3{margin:0 0 8px;font-size:1.1rem;}
+  .tool p{margin:0;color:var(--muted);font-size:.92rem;max-width:40em;}
+  .clock{
+    font-variant-numeric:tabular-nums;font-size:2.6rem;font-weight:700;
+    letter-spacing:.05em;text-align:center;
+  }
+  .clock small{font-size:.85rem;color:var(--muted);font-weight:400;display:block;letter-spacing:.16em;margin-top:2px;}
+  .tool-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:16px;}
+
+  /* 注意事项 */
+  .notes{
+    background:var(--bg-soft);border:1px solid var(--line);border-radius:var(--radius);
+    padding:26px;
+  }
+  .notes ul{margin:0;padding-left:20px;color:var(--muted);font-size:.94rem;}
+  .notes li{margin-bottom:10px;}
+  .notes li:last-child{margin-bottom:0;}
+  .notes strong{color:var(--text);font-weight:600;}
+
+  /* 页尾 */
+  footer.site{
+    padding:38px 0 46px;background:var(--bg);
+  }
+  .foot-inner{
+    display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
+    align-items:flex-start;
+  }
+  .foot-inner p{margin:6px 0 0;color:var(--muted);font-size:.86rem;max-width:36em;}
+  .foot-links{display:flex;gap:18px;flex-wrap:wrap;font-size:.86rem;color:var(--muted);}
+  .foot-links a:hover{color:var(--amber);}
+  .foot-bottom{
+    margin-top:26px;padding-top:18px;border-top:1px solid var(--line);
+    color:var(--muted);font-size:.8rem;letter-spacing:.02em;
+  }
+
+  /* 响应式 */
+  @media (max-width:900px){
+    .hero-inner{grid-template-columns:1fr;gap:32px;padding:44px 0 46px;}
+    .grid-3{grid-template-columns:1fr;}
+    .rhythm-list{grid-template-columns:1fr;}
+    .tool{grid-template-columns:1fr;}
+    .clock{text-align:left;}
+  }
+  @media (max-width:680px){
+    .head-inner{flex-direction:column;align-items:flex-start;gap:10px;padding:12px 0;}
+    nav.main ul{gap:2px;}
+    nav.main a{padding:6px 10px;font-size:.85rem;}
+    section.block{padding:40px 0;}
+    .hero-inner{padding:34px 0 38px;}
+    .step{padding-left:48px;}
+    .step::before{width:30px;height:30px;font-size:.85rem;}
+    .dial-time{font-size:1.7rem;}
+    .clock{font-size:2.1rem;}
+  }
+</style>
+    <script type="text/javascript" src="https://cdn.bdwgg.com/mh.js"></script>
+</head>
+<body>
+
+<header class="site">
+  <div class="wrap head-inner">
+    <a class="logo" href="#top" aria-label="寸止挑战 首页">
+      <span class="mark" aria-hidden="true">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+          <circle cx="12" cy="12" r="9" stroke="#ffb648" stroke-width="2"/>
+          <line x1="12" y1="12" x2="12" y2="6" stroke="#ffb648" stroke-width="2" stroke-linecap="round"/>
+          <line x1="12" y1="12" x2="17" y2="15" stroke="#7ad0c0" stroke-width="2" stroke-linecap="round"/>
+        </svg>
+      </span>
+      <span class="brand">寸止<span>挑战</span></span>
+    </a>
+    <nav class="main" aria-label="主导航">
+      <ul>
+        <li><a href="#rules">基本规则</a></li>
+        <li><a href="#rhythm">节奏方法</a></li>
+        <li><a href="#steps">练习步骤</a></li>
+        <li><a href="#timer">计时工具</a></li>
+        <li><a href="#notes">注意事项</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <!-- 首屏 -->
+  <section class="hero">
+    <div class="wrap hero-inner">
+      <div>
+        <span class="kicker">节奏控制 · 自我克制</span>
+        <h1>寸止挑战</h1>
+        <p class="lead">寸止挑战是一种以“停住”为核心的练习方式：在节奏推进到临界点前主动收手，再用稳定的呼吸与计时重新开始。它考验的不是忍耐极限，而是对节奏的判断与对自身的控制。下面从规则、方法到步骤，为初次接触寸止挑战的访问者理出一条清晰路径。</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#steps">开始练习步骤</a>
+          <a class="btn ghost" href="#timer">打开计时工具</a>
+        </div>
+      </div>
+      <div class="dial-card" aria-hidden="true">
+        <svg viewBox="0 0 200 200" width="180" height="180" style="margin:0 auto;">
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#2f3644" stroke-width="10"/>
+          <circle cx="100" cy="100" r="82" fill="none" stroke="#ffb648" stroke-width="10"
+                  stroke-linecap="round" stroke-dasharray="386 515" transform="rotate(-90 100 100)"/>
+          <circle cx="100" cy="100" r="60" fill="none" stroke="#2f3644" stroke-width="2" stroke-dasharray="4 8"/>
+          <line x1="100" y1="100" x2="100" y2="46" stroke="#7ad0c0" stroke-width="4" stroke-linecap="round"/>
+          <line x1="100" y1="100" x2="142" y2="122" stroke="#ffb648" stroke-width="4" stroke-linecap="round"/>
+          <circle cx="100" cy="100" r="6" fill="#e8ebf1"/>
+        </svg>
+        <div class="cap">节奏刻度 · 停在临界之前</div>
+        <div class="dial-time">00:30<small>轮次</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 基本规则 -->
+  <section class="block" id="rules">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">RULE</span>
+        <h2>寸止挑战的三条基本规则</h2>
+        <p>规则越少，越需要自律。寸止挑战的要点不在强度，而在于每一次都能准确地在预定节点停下。</p>
+      </div>
+      <div class="grid-3">
+        <article class="rule">
+          <div class="num">01</div>
+          <h3>先定节点，再开始</h3>
+          <p>在进入寸止挑战前，先明确这一轮停下的时间点或节奏点。节点可以是秒数、拍数，也可以是一段固定动作的结束位置，提前写下来，避免中途临时更改。</p>
+        </article>
+        <article class="rule">
+          <div class="num">02</div>
+          <h3>到达即停，不加惯性</h3>
+          <p>寸止挑战的关键动作是“停”。到达节点后立即中断推进，让身体和注意力在停顿中回到平稳状态，再决定是否进入下一轮，而不是顺势延长。</p>
+        </article>
+        <article class="rule">
+          <div class="num">03</div>
+          <h3>记录每轮结果</h3>
+          <p>用简单的表格记下轮次、计划时长、实际停下时间与主观感受。记录让寸止挑战从一次性尝试变成可回看的练习，也便于判断节奏是否过快。</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 节奏方法 -->
+  <section class="block" id="rhythm">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">RHYTHM</span>
+        <h2>常用的四种节奏方法</h2>
+        <p>不同的人适合不同的节拍。以下方法都围绕“稳定—临界—停下”这一循环展开，可单独使用，也可组合成一轮寸止挑战。</p>
+      </div>
+      <div class="rhythm-list">
+        <article class="rhythm">
+          <span class="ic" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="#7ad0c0" stroke-width="2"/>
+              <line x1="12" y1="12" x2="12" y2="7" stroke="#7ad0c0" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>秒表法</h3>
+            <p>以固定秒数为节点，例如每轮 30 秒、45 秒、60 秒递进。秒表法最直观，适合刚开始接触寸止挑战、还无法凭感觉判断临界点的人。</p>
+          </div>
+        </article>
+        <article class="rhythm">
+          <span class="ic" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M4 16h3l2-8 4 12 3-9h4" stroke="#7ad0c0" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>呼吸法</h3>
+            <p>以呼吸次数作为节拍，吸气四拍、呼气四拍为一小节。呼吸节奏稳定时，临界点更容易被察觉，停下后的恢复也更快。</p>
+          </div>
+        </article>
+        <article class="rhythm">
+          <span class="ic" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <rect x="4" y="5" width="4" height="14" rx="1" stroke="#7ad0c0" stroke-width="2"/>
+              <rect x="10" y="8" width="4" height="11" rx="1" stroke="#7ad0c0" stroke-width="2"/>
+              <rect x="16" y="3" width="4" height="16" rx="1" stroke="#7ad0c0" stroke-width="2"/>
+            </svg>
+          </span>
+          <div>
+            <h3>拍点法</h3>
+            <p>借助节拍器或固定 BPM 的背景节拍，在指定拍数处停下。拍点法把寸止挑战拆成可计数的单元，适合配合动作节奏一起练习。</p>
+          </div>
+        </article>
+        <article class="rhythm">
+          <span class="ic" aria-hidden="true">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
+              <path d="M6 18V9M12 18V5M18 18v-6" stroke="#7ad0c0" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <div>
+            <h3>阶梯法</h3>
+            <p>把一轮寸止挑战拆成若干阶梯，每阶只比上一阶多一点点，并在每阶末尾停顿。阶梯法强调渐进，不追求一次到位。</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- 练习步骤 -->
+  <section class="block" id="steps">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">STEP</span>
+        <h2>一次完整的寸止挑战练习步骤</h2>
+        <p>把上面的规则与方法串起来，就是一次可以照着做的流程。建议首次练习控制在 10 分钟以内。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <h3>准备：设定环境与目标</h3>
+          <p>找一段不受打扰的时间，把计时器或节拍器放在看得见的位置。写下本轮寸止挑战的目标：做几轮、每轮多长、用哪种节奏方法。</p>
+        </div>
+        <div class="step">
+          <h3>热身：先慢后快</h3>
+          <p>用两到三轮短节奏把状态带起来，例如每轮 15 秒。热身阶段的目的是让注意力进入节奏，而不是消耗体力。</p>
+        </div>
+        <div class="step">
+          <h3>推进：保持稳定节拍</h3>
+          <p>按设定的节奏推进，过程中观察自己的状态变化。当接近预设节点时，把注意力放在“即将停下”这件事上，而不是继续加码。</p>
+        </div>
+        <div class="step">
+          <h3>停下：完成寸止动作</h3>
+          <p>到达节点立即停止，保持不动，用三到五次深呼吸让状态回落。这一步是寸止挑战的核心，也是与普通节奏练习最大的区别。</p>
+        </div>
+        <div class="step">
+          <h3>复盘：记录与调整</h3>
+          <p>整轮结束后回看记录，判断节点是否设得过晚、节奏是否过快。下一轮寸止挑战只调整一个变量，避免同时改动太多。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 计时工具 -->
+  <section class="block" id="timer">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">TOOL</span>
+        <h2>页面内的简易计时器</h2>
+        <p>无需下载即可使用：点击开始进入一轮 30 秒的寸止挑战，点击重置回到初始状态。计时结束会以颜色提示本轮节点已到。</p>
+      </div>
+      <div class="tool">
+        <div>
+          <h3>30 秒单轮计时</h3>
+          <p>适合作为寸止挑战的第一轮节点。熟练后可以改为手动查看秒表，按自己的阶梯设定推进。</p>
+          <div class="tool-actions">
+            <button class="btn primary" id="startBtn" type="button">开始计时</button>
+            <button class="btn ghost" id="resetBtn" type="button">重置</button>
+            <a class="btn ghost" href="#" download data-download-placeholder="true" aria-disabled="true" tabindex="-1" style="pointer-events:none;">下载练习记录表</a>
+          </div>
+        </div>
+        <div class="clock" id="clock" aria-live="polite">00:30<small>剩余时间</small></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 注意事项 -->
+  <section class="block" id="notes">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="tag">NOTE</span>
+        <h2>练习寸止挑战时的注意事项</h2>
+        <p>寸止挑战属于自我控制的练习，安全与适度优先于强度和次数。</p>
+      </div>
+      <div class="notes">
+        <ul>
+          <li><strong>先评估自身状态。</strong>身体不适、疲劳或情绪波动较大时，不适合进行寸止挑战，应先休息。</li>
+          <li><strong>节点宁早勿晚。</strong>如果某一轮已经难以在预定位置停下，说明节点设得过晚，下一轮应提前。</li>
+          <li><strong>控制总时长。</strong>单次练习建议不超过 15 分钟，轮次之间留出足够的恢复时间。</li>
+          <li><strong>不做无记录的加码。</strong>寸止挑战的价值来自可回看的记录，每次只调整一个变量，避免盲目堆叠强度。</li>
+          <li><strong>以放松收尾。</strong>练习结束后用几分钟做缓慢呼吸与拉伸，让状态平稳回落。</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="foot-inner">
+      <div>
+        <a class="logo" href="#top" aria-label="寸止挑战 返回顶部">
+          <span class="mark" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="#ffb648" stroke-width="2"/>
+              <line x1="12" y1="12" x2="12" y2="6" stroke="#ffb648" stroke-width="2" stroke-linecap="round"/>
+              <line x1="12" y1="12" x2="17" y2="15" stroke="#7ad0c0" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </span>
+          <span class="brand">寸止<span>挑战</span></span>
+        </a>
+        <p>寸止挑战主题首页，围绕节奏控制与自我克制整理规则、方法与练习步骤，所有内容以静态页面形式呈现，供访问者直接阅读与使用。</p>
+      </div>
+      <div class="foot-links">
+        <a href="#rules">基本规则</a>
+        <a href="#rhythm">节奏方法</a>
+        <a href="#steps">练习步骤</a>
+        <a href="#timer">计时工具</a>
+        <a href="#notes">注意事项</a>
+      </div>
+    </div>
+    <div class="foot-bottom">寸止挑战 · 节奏控制练习主题页</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var total = 30;
+  var remain = total;
+  var timer = null;
+  var clock = document.getElementById('clock');
+  var startBtn = document.getElementById('startBtn');
+  var resetBtn = document.getElementById('resetBtn');
+
+  function render(){
+    var m = Math.floor(remain/60);
+    var s = remain % 60;
+    var label = (remain === 0) ? '<small>本轮节点已到</small>' : '<small>剩余时间</small>';
+    clock.innerHTML = ('0'+m).slice(-2) + ':' + ('0'+s).slice(-2) + label;
+    clock.style.color = (remain === 0) ? '#7ad0c0' : '';
+  }
+
+  function tick(){
+    if (remain > 0) { remain--; render(); }
+    if (remain === 0) { clearInterval(timer); timer = null; startBtn.textContent = '重新开始'; }
+  }
+
+  startBtn.addEventListener('click', function(){
+    if (timer) { clearInterval(timer); timer = null; startBtn.textContent = '继续计时'; return; }
+    if (remain === 0) { remain = total; render(); }
+    startBtn.textContent = '暂停';
+    timer = setInterval(tick, 1000);
+  });
+
+  resetBtn.addEventListener('click', function(){
+    if (timer) { clearInterval(timer); timer = null; }
+    remain = total;
+    startBtn.textContent = '开始计时';
+    render();
+  });
+
+  render();
+})();
+</script>
+
+</body>
+              </html>
